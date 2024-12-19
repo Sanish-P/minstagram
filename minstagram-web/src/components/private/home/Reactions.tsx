@@ -29,7 +29,7 @@ interface IReactionsProps {
   disabled?: boolean;
 }
 
-const Reactions: React.SFC<IReactionsProps> = (props) => {
+const Reactions: React.FC<IReactionsProps> = (props) => {
   const { reactions } = useContext(ReactionsContext)
 
   const addReaction = async (reactionId: string) => {

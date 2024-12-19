@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
 
 import reactionRouter from './router/reactions';
@@ -7,7 +7,6 @@ import userRouter from './router/users';
 import { errorHandler } from './middleware/error';
 import verification from './middleware/verification';
 import PostRouter from './router/posts';
-import config from './config';
 
 const app = express();
 
@@ -17,13 +16,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-app.use(function(req, res, next) {
+app.use((req: Request, _: Response, next: NextFunction) => {
   console.log(req.url, 'express log');
   next();
 })
 
 // CORS
-app.use(function(req, res, next) {
+app.use((req: Request, res: Response, next: NextFunction) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Methods",
@@ -40,7 +39,7 @@ app.use(function(req, res, next) {
   }
 });
 
-app.get('/', (req, res) => {
+app.get('/', (_: Request, res: Response) => {
   res.send('minstagram apis running..')
 });
 

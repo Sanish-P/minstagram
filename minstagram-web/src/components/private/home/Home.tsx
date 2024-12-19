@@ -9,7 +9,7 @@ const HomeWrapper = styled.div`
   grid-row-gap: 20px;
 `
 
-const Home: React.SFC<{}> = () => {
+const Home: React.FC = () => {
   const [posts, setPosts] = useState<Array<IPost>>([]);
   const fetchPostList = async () => {
     try {

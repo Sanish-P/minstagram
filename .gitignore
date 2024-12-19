@@ -4,9 +4,8 @@ node_modules
 
 post-uploads
 
-.env.*
-.env
-
 yarn-error.log
 
 build
+
+.DS_Store

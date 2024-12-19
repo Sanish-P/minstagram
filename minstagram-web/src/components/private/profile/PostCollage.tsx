@@ -24,14 +24,14 @@ const PostWrapper = styled.div`
   justify-items: center;
 `
 
-const SinglePost: React.SFC<IPost> = ({ id, imageUrl, reactions }) => (
+const SinglePost: React.FC<IPost> = ({ id, imageUrl, reactions }) => (
   <PostWrapper>
     <ImageWrapper src={imageUrl} />
     <Reactions disabled emojiSize="25px" reaction={reactions} postId={id} onReactionChange={() => {}} />
   </PostWrapper>
 )
 
-const PostCollage: React.SFC<{ posts: Array<IPost>}> = ({ posts }) => {
+const PostCollage: React.FC<{ posts: Array<IPost>}> = ({ posts }) => {
   return (
     <PostCollageWrapper>
       {posts.map((post) => <SinglePost key={post.id} {...post} />)}

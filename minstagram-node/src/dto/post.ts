@@ -15,7 +15,7 @@ interface IPostListItem {
   reactions: IResponseMap;
 }
 
-interface IResponseMap {
+export interface IResponseMap {
   [reactionId: string]: number
 }
 
@@ -28,7 +28,7 @@ const parseAuthor = (user: IUser): IPostAuthor => {
 
 export const postListDTO = (postList: Array<IPost>): Array<IPostListItem> => {
   const tranformedPostList = postList.map((post) => {
-    const { _id: id, imageId, caption, author, reactions } = post;
+    const { id, imageId, caption, author, reactions } = post;
 
     return {
       id,
@@ -45,7 +45,7 @@ export const postListDTO = (postList: Array<IPost>): Array<IPostListItem> => {
 export const createReactionMap = (reactions: Array<IPostReaction>) => {
   const reactionMap = new Map<string, number>();
 
-  reactions.forEach((reaction) => {
+  for (const reaction of reactions) {
     const reactionId = reaction.reaction.toString();
     const reactionCount = reactionMap.get(reactionId)
     if(reactionCount) {
@@ -53,11 +53,11 @@ export const createReactionMap = (reactions: Array<IPostReaction>) => {
     } else {
       reactionMap.set(reactionId, 1);
     }
-  });
+  };
 
   const responseMap: IResponseMap = {};
 
-  for(let [reactionId, reactionCount] of reactionMap) {
+  for(const [reactionId, reactionCount] of reactionMap) {
     responseMap[reactionId] = reactionCount;
   }
   return responseMap;

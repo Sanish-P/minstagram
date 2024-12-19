@@ -7,13 +7,13 @@ import resource from '../models/resource';
 export const FILE_DESTINATION_PATH = './post-uploads/'
 
 const diskStorage = multer.diskStorage({
-  destination: function(req, file, cb) {
+  destination: (_, file, cb) =>{
     if(!fs.existsSync(FILE_DESTINATION_PATH)) {
       fs.mkdirSync(FILE_DESTINATION_PATH)
     }
     cb(null, FILE_DESTINATION_PATH)
   },
-  filename: function(req, file, cb) {
+  filename: (req, file, cb) => {
     const filename = `${file.fieldname}-${Date.now()}.jpg`
     req.body.filename = filename
     cb(null, filename)

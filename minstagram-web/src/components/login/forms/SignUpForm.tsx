@@ -13,7 +13,7 @@ interface ISignUpFormValues {
 
 type SignUpFormProps = ICommonFormProps;
 
-const SignUpForm: React.SFC<SignUpFormProps> = (props) => {
+const SignUpForm: React.FC<SignUpFormProps> = (props) => {
   const { register, handleSubmit, errors, getValues } = useForm<ISignUpFormValues>()
   const onSubmit = async ({ email, password}: ISignUpFormValues) => {
     try {

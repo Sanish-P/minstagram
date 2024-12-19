@@ -5,36 +5,26 @@ import config from './config';
 
 const { dbUrl } = config.mongo;
 
-const server = app.listen(app.get('port'), function(error: Error){
-  try {
-    if(error) {
-      console.log('Failed to start')
-      console.log(error)
-    } else {
-      initMongo();
-      console.log(`minstagram is chill at ${app.get('port')} 😍`)
-    }
-  } catch (error) {
-    server.close();
-  }
+const server = app.listen(app.get('port'), async () => {
+  await initMongo();
+  console.log(`minstagram is chill at ${app.get('port')} 😍`)
 })
 
-function initMongo() {
-  mongoose.connect(`${dbUrl}`, {
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-    user: config.mongo.mongoUsername,
-    pass: config.mongo.mongoPassword,
-  });
-  const db = mongoose.connection;
-  db.once('open', () => {
-    console.log(`Connected to DB ${dbUrl}`);
-  });
-  
-  db.on('error', (error: Error) => {
-    console.log(error);
-    throw error;
-  });
+async function initMongo() {
+  return new Promise(() => {
+    mongoose.connect(`${dbUrl}`, {
+      user: config.mongo.mongoUsername,
+      pass: config.mongo.mongoPassword,
+    });
+    const db = mongoose.connection;
+    db.once('open', () => {
+      console.log(`Connected to DB ${dbUrl}`);
+    });
+    
+    db.on('error', (error: Error) => {
+      console.error(error);
+      throw error;
+    });
+  })
 }
 export default server;

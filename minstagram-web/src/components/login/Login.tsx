@@ -24,7 +24,7 @@ export interface ICommonFormProps {
   onFormChange: (formType: FormTypes) => void;
 }
 
-const Login: React.SFC<{}> = () => {
+const Login: React.FC = () => {
   const [currentForm, setCurrentForm] = useState<FormTypes>(FormTypes.login);
   const handleFormChange = (selectedForm: FormTypes) => {
     setCurrentForm(selectedForm)

@@ -3,9 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { handleLogout } from 'src/utils/auth';
-import { history } from '../Router';
 import Stalk from './Stalk';
 import icon from 'public/assets/favs/favicon-32x32.png';
+import { useNavigate } from 'react-router-dom';
 
 export const ShadowWrapper = styled.div`
   box-shadow: 1px 1px 10px rgba(0,0,0,0.2);
@@ -30,18 +30,21 @@ const Link = styled.a`
   color: black;
 `;
 
-const Header: React.SFC<{}> = () => {
+const Header: React.FC = () => {
+  const navigate = useNavigate();
+
   const onLogout = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     handleLogout()
+    navigate('/login')
   }
   const onHome = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
-    history.push('/')
+    navigate('/')
   }
   return (
     <HeaderWrapper className="header">
-      <Link href="/" className="logo" onClick={onHome}><img src={icon} /></Link>
+      <Link href="/" className="logo" onClick={onHome}><img src={icon} alt='icon' /></Link>
       <Stalk />
       <Link href="/logout" className="logout" onClick={onLogout}>🚪</Link>      
     </HeaderWrapper>

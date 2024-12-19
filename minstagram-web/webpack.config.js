@@ -18,8 +18,6 @@ module.exports = () => {
       publicPath: PUBLIC_PATH
     },
     devServer: {
-      contentBase: path.resolve(__dirname),
-      publicPath: PUBLIC_PATH,
       port: '8000',
       historyApiFallback: true,
       host: '0.0.0.0' // host for auto open in browser
@@ -30,7 +28,7 @@ module.exports = () => {
           test: /(src|config|env).*\.tsx?$/,
           use: [
             {
-              loader: 'awesome-typescript-loader', // for tsx transpile to es5 modules
+              loader: 'ts-loader', // for tsx transpile to es5 modules
               options: {
                 reportFiles: ['src/**/*.{ts,tsx}', 'config/**/*.{ts,tsx}']
               }

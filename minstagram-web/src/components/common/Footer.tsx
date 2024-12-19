@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { history } from 'src/components/Router';
 import { ShadowWrapper } from './Header';
+import { useNavigate } from 'react-router-dom';
 
 const FooterWrapper = styled(ShadowWrapper)`
   display: grid;
@@ -21,8 +21,10 @@ const Link = styled.a`
   color: black;
 `
 
-const Footer: React.SFC<{}> = () => {
-  const handleClick = (path: string) => (event: React.MouseEvent<HTMLAnchorElement>) => { event.preventDefault(); return history.push(path)}
+const Footer: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleClick = (path: string) => (event: React.MouseEvent<HTMLAnchorElement>) => { event.preventDefault(); return navigate(path); }
   return (
     <FooterWrapper className="footer">
       <Link href="/" onClick={handleClick('/')}>🏠</Link>
