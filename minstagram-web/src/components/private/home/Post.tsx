@@ -6,7 +6,7 @@ export interface IPost {
   id: string;
   imageUrl: string;
   caption: string;
-  author: Object;
+  author: Record<string, string>;
   reactions: IReactionMap;
 }
 
@@ -25,7 +25,7 @@ interface IPostProps {
   onReactionChange: () => void;
 }
 
-const Post: React.SFC<IPostProps> = ({ post, onReactionChange }) => {
+const Post: React.FC<IPostProps> = ({ post, onReactionChange }) => {
   return (
     <PostWrapper className="post">
       <div style={{ padding: '10px' }} className="image">

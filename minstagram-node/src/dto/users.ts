@@ -1,18 +1,25 @@
 import { IUser } from '../models/user';
 
 import config from '../config';
-import { createReactionMap } from './post';
+import { createReactionMap, IResponseMap } from './post';
 import { IPost } from '../models/post';
 
 interface IProfile {
   id: string;
   email: string;
   profileUrl: string;
-  posts: Array<{}>;
+  posts: IUserPost[];
+}
+
+interface IUserPost {
+  id: string;
+  imageUrl: string;
+  caption: string;
+  reactions: IResponseMap;
 }
 
 export const profileDTO = (user: IUser): IProfile => {
-  const { email, profile, posts, _id: id } = user;
+  const { email, profile, posts, id } = user;
   return {
     id,
     email,
@@ -21,9 +28,9 @@ export const profileDTO = (user: IUser): IProfile => {
   }
 }
 
-const parsePosts = (posts: Array<IPost>) => {
+const parsePosts = (posts: IPost[]): IUserPost[] => {
   return posts.map((post) => ({
-    id: post._id,
+    id: post.id,
     imageUrl: `${config.resource.staticPath}/${post.imageId.path}`,
     caption: post.caption,
     reactions: createReactionMap(post.reactions)
@@ -38,7 +45,7 @@ interface IUserListItem {
 }
 
 export const userListDTO = (user: IUser): IUserListItem => {
-  const { email, profile, _id: id } = user;
+  const { email, profile, id } = user;
   return {
     id,
     email,

@@ -9,7 +9,7 @@ const AppSection = styled.div`
   height: 100vh;
 `
 
-const App: React.SFC<{}> = () => (
+const App: React.FC = () => (
   <AppSection>
     <AppRouter />
   </AppSection>

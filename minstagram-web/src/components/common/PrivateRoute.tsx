@@ -1,30 +1,19 @@
 import * as React from "react";
-import { RouteComponentProps, Route, RouteProps } from "react-router";
+import { Navigate, Outlet, RouteProps } from "react-router";
 import { checkAuthentication, handleLogout } from "src/utils/auth";
 
-interface IPrivateRouteProps extends RouteProps {
-  component: React.ComponentType<RouteComponentProps<{}>>;
-}
-
-const RedirectToLogout: React.SFC<{}> = () => {
+const RedirectToLogout: React.FC = () => {
   handleLogout();
-  return <React.Fragment />;
+  return <Navigate to="/login" />;
 };
 
-const PrivateRoute: React.SFC<IPrivateRouteProps> = ({
-  component: Component,
-  ...restProps
-}) => (
-  <Route
-    {...restProps}
-    render={(routeProps: RouteComponentProps<{}>) =>
-      checkAuthentication() ? (
-        <Component {...routeProps} />
-      ) : (
-        <RedirectToLogout />
-      )
-    }
-  />
-);
+const PrivateRoute: React.FC<RouteProps> = ({ element, ...restProps }) => {
+  const isAuthenticated = checkAuthentication();
 
+  if(isAuthenticated) {
+    return <Outlet />;
+  }
+  
+  return <RedirectToLogout />;
+};
 export default PrivateRoute;

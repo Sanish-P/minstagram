@@ -1,5 +1,10 @@
 import jwt from 'jsonwebtoken';
+
+import crypto from "crypto";
+
 import config from '../config';
+
+const SALT_ROUNDS = config.auth.saltRounds;
 
 interface ITokenPayload {
   id: string;
@@ -23,4 +28,16 @@ export function generateToken(payload: ITokenPayload) {
 
 export function verifyReceivedToken(token: string): ITokenPayload {
   return verifyAccessToken(token) as ITokenPayload
+}
+
+export function hashPassword(password: string): string {
+  const passwordHash = crypto.pbkdf2Sync(
+    password,
+    "salt",
+    Number.parseInt(SALT_ROUNDS),
+    256,
+    "sha256",
+  );
+
+  return passwordHash.toString('hex');
 }
