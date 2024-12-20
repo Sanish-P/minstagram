@@ -12,12 +12,11 @@ export const ShadowWrapper = styled.div`
 `
 
 const HeaderWrapper = styled(ShadowWrapper)`
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  justify-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   padding: 20px 0;
   position: fixed;
-  z-index: 100;
   top: 0;
   width: 100%;
   background: white;

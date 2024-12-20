@@ -85,7 +85,7 @@ const PrivateRouter: React.FC = () => {
   }, []);
 
   const PrivateRoutesWrapper = styled.div`
-    margin: 65px 0;
+    margin: 80px 0;
   `;
 
   return (

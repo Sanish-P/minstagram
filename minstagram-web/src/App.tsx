@@ -1,18 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import AppRouter from './components/Router';
+import React from "react";
+import AppRouter from "./components/Router";
 
-import 'public/assets/favs/favicon-32x32.png';
+import "public/assets/favs/favicon-32x32.png";
 
-const AppSection = styled.div`
-  width: 100%;
-  height: 100vh;
-`
-
-const App: React.FC = () => (
-  <AppSection>
-    <AppRouter />
-  </AppSection>
-);
+const App: React.FC = () => <AppRouter />;
 
 export default App;

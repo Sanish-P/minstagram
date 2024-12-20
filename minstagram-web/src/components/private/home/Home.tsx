@@ -5,8 +5,8 @@ import Post, { IPost } from './Post';
 import axiosInstance from 'src/utils/axios';
 
 const HomeWrapper = styled.div`
-  display: grid;
-  grid-row-gap: 20px;
+  display: flex;
+  flex-direction: column;
 `
 
 const Home: React.FC = () => {
@@ -20,7 +20,7 @@ const Home: React.FC = () => {
       })
       setPosts(postList)
     } catch (error) {
-      throw error;
+      console.error(error);
     }
   }
   const handleReactionChange = () => {

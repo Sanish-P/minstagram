@@ -34,6 +34,12 @@ const EmailWrapper = styled.span`
   padding: 10px 0;
 `;
 
+const Search = styled.input`
+  padding: 12px 40px 12px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 25px;
+`;
+
 const Stalk: React.FC = () => {
   const initialMount = useRef(true);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -92,22 +98,21 @@ const Stalk: React.FC = () => {
 
   const handleUserSelection =
     (id: string) => (event: React.MouseEvent<HTMLLIElement>) => {
-      
       navigate(`/users/${id}`);
       setIsListVisible(false);
     };
 
   return (
     <div ref={wrapperRef}>
-      <input
+      <Search
         className="search"
         placeholder="Want to stalk"
         value={searchTerm}
         onChange={handleSearchTermChange}
         onFocus={handleFocus}
       />
-      <UserList>
-        {isListVisible ? (
+      {isListVisible ? (
+        <UserList>
           <>
             {userList.map(({ email, profileUrl, id }) => (
               <UserListItem key={id} onClick={handleUserSelection(id)}>
@@ -116,8 +121,8 @@ const Stalk: React.FC = () => {
               </UserListItem>
             ))}
           </>
-        ) : null}
-      </UserList>
+        </UserList>
+      ) : null}
     </div>
   );
 };

@@ -18,7 +18,7 @@ module.exports = () => {
       publicPath: PUBLIC_PATH
     },
     devServer: {
-      port: '8000',
+      port: '9000',
       historyApiFallback: true,
       host: '0.0.0.0' // host for auto open in browser
     },
