@@ -6,9 +6,9 @@ A pet project for demonstrating use of service workers for caching static conten
 ### Installing Dependencies
 ```shell
 cd minstagram-node
-npm install
+yarn install
 cd minstagram-web
-npm install
+yarn install
 ```
 
 ### Start up mongoDB
@@ -16,18 +16,24 @@ npm install
 cd minstagram-node
 docker-compose up -d
 ```
+
+## Seed Database
+```shell
+cd minstagram-node
+yarn ts-node ./development/seed-db.ts
+```
 ### Run locally
 run the frontends for the demo
 ```shell
 
 cd minstagram-web
-npm start
+yarn start
 ```
 run the backend for the demo
 
 ```shell
 cd minstagram-node
-npm start
+yarn start
 ```
 
-This should start backend at ```http://localhost:3000/``` and frontend at ```http://localhost:8000/```
+This should start backend at ```http://localhost:4000/``` and frontend at ```http://localhost:9000/```

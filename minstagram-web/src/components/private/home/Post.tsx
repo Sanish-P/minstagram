@@ -12,8 +12,9 @@ export interface IPost {
 
 
 const PostWrapper = styled.div`
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const ImageWrapper = styled.img`

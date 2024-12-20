@@ -7,10 +7,11 @@ import userRouter from './router/users';
 import { errorHandler } from './middleware/error';
 import verification from './middleware/verification';
 import PostRouter from './router/posts';
+import config from './config';
 
 const app = express();
 
-app.set('port', 3000);
+app.set('port', config.app.port);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

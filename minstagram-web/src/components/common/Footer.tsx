@@ -4,21 +4,20 @@ import { ShadowWrapper } from './Header';
 import { useNavigate } from 'react-router-dom';
 
 const FooterWrapper = styled(ShadowWrapper)`
-  display: grid;
-  grid-template-columns: repeat(3, 3fr);
-  justify-items: center;
-  padding: 20px 0;
+  display: flex;
   position: fixed;
-  z-index: 100;
   bottom: 0;
   width: 100%;
+  justify-content: space-around;
   background: white;
 `
 const Link = styled.a`
-  cursor: pointer;
   font-size: 25px;
   text-decoration: none;
   color: black;
+  padding: 20px 0;
+  width: 100%;
+  text-align: center;
 `
 
 const Footer: React.FC = () => {

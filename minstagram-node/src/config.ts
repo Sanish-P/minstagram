@@ -27,4 +27,7 @@ export default {
 		refreshTokenSecretKey: process.env.REFRESH_TOKEN_SECRET_KEY || "abc123",
 	},
 	allowedOrigin: process.env.ALLOWED_ORIGIN,
+	app: {
+		port: process.env.APP_PORT || '3000',
+	}
 };
