@@ -10,10 +10,8 @@ export async function handleLogin({
 			email,
 			password,
 		})
-		.then(({ data }) => data)
-		.catch((error) => {
-			throw error;
-		});
+		.then(({ data }) => data);
+
 	storage.setItem("minstagram-web", JSON.stringify(response));
 	return;
 }

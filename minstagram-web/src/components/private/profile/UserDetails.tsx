@@ -13,8 +13,8 @@ const ProfileImage = styled.img`
 `;
 
 const UserDetailsWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  align-items: center;
 `;
 
 interface IUserDetailsProps {

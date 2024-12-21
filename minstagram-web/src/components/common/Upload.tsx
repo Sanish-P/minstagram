@@ -6,9 +6,7 @@ const uploadFile = async (uploadFile: FormData) => {
   const { id }: { id: string } = await axiosInstance
     .post("/v1/upload", uploadFile)
     .then(({ data }) => data)
-    .catch((error) => {
-      throw error;
-    });
+
   return id;
 };
 
@@ -51,7 +49,7 @@ const Upload: React.FC<IUploadProps> = (props) => {
     max-height: ${props.maxHeight ? `${props.maxHeight}px` : "300px"};
   `;
   return (
-    <div style={{ textAlign: "center" }}>
+    <div>
       {imagePreview ? (
         <ImagePreview src={imagePreview} />
       ) : (

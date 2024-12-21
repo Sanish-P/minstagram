@@ -4,12 +4,8 @@ import { IPost } from '../home/Post';
 import Reactions from '../home/Reactions';
 
 const PostCollageWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 18px;
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;  
-  }
+  display: flex;
+  flex-direction: column;
 `
 
 const ImageWrapper = styled.img`
@@ -20,8 +16,9 @@ const ImageWrapper = styled.img`
 `
 
 const PostWrapper = styled.div`
-  display: grid;
-  justify-items: center;
+  display: column;
+  align-items: center;
+  justify-content: space-between;
 `
 
 const SinglePost: React.FC<IPost> = ({ id, imageUrl, reactions }) => (

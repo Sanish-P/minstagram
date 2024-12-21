@@ -58,25 +58,17 @@ const PrivateRouter: React.FC = () => {
   const fetchProfile = async () => {
     const profile: IProfile = await axiosInstance
       .get("/v1/users/me")
-      .then(({ data }) => data)
-      .catch((error) => {
-        throw error;
-      });
+      .then(({ data }) => data);
+
     setProfile(profile);
   };
 
   const fetchReactions = async () => {
-    try {
-      const reactions: Array<IReaction> = await axiosInstance
-        .get("/v1/reactions")
-        .then(({ data }) => data)
-        .catch((error) => {
-          throw error;
-        });
-      setReactions(reactions);
-    } catch (error) {
-      throw error;
-    }
+    const reactions: Array<IReaction> = await axiosInstance
+      .get("/v1/reactions")
+      .then(({ data }) => data)
+
+    setReactions(reactions);
   };
 
   useEffect(() => {
@@ -85,13 +77,14 @@ const PrivateRouter: React.FC = () => {
   }, []);
 
   const PrivateRoutesWrapper = styled.div`
-    margin: 80px 0;
+    margin: 82px 0;
+    padding: 12px 0;
   `;
 
   return (
     <PrivateRouterContext.Provider value={{ profile, fetchProfile }}>
       <Header />
-      <PrivateRoutesWrapper>
+      <PrivateRoutesWrapper className="private-routes">
         <Routes>
           <Route path="/post" element={<CreatePost />} />
         </Routes>

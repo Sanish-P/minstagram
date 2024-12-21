@@ -34,11 +34,15 @@ interface ILoginFormValues {
 type ILoginFormProps = ICommonFormProps;
 
 const LoginForm: React.FC<ILoginFormProps> = (props) => {
-  const { register, handleSubmit, errors } = useForm<ILoginFormValues>();
+  const { register, handleSubmit, errors, setError } = useForm<ILoginFormValues>();
   const navigate = useNavigate();
   const onSubmit = async (credentials: ILoginFormValues) => {
-    await handleLogin(credentials);
-    navigate("/");
+    try {
+      await handleLogin(credentials);
+      navigate("/");
+    } catch (error) {
+      setError("email", 'invalid', 'Invalid email or password');
+    }
   };
 
   return (
@@ -51,7 +55,7 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
             ref={register({ required: true })}
             autoComplete="off"
           />
-          {errors.email && <ErrorSpan>Required</ErrorSpan>}
+          {errors.email && <ErrorSpan>{errors.email?.message}</ErrorSpan>}
         </InputWrapper>
         <div>
           <Input
@@ -61,7 +65,7 @@ const LoginForm: React.FC<ILoginFormProps> = (props) => {
             ref={register({ required: true })}
             autoComplete="off"
           />
-          {errors.password && <ErrorSpan>Required</ErrorSpan>}
+          {errors.password && <ErrorSpan>{errors.password?.message}</ErrorSpan>}
         </div>
       </div>
       <div>

@@ -57,6 +57,7 @@ function parseErrorMessage(error: AxiosResponse<IAxiosErrorData>): IParsedError 
   } else if (error.status === 404) {
     parsedError.message = error.data.message;
   }
+  console.error(parsedError, error);
   return parsedError;
 }
 

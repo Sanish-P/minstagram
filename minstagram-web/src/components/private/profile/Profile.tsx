@@ -1,26 +1,17 @@
 import React, { useContext } from 'react';
 
-import styled from 'styled-components';
-
 import UserDetails from './UserDetails';
 import PostCollage from './PostCollage';
 import { PrivateRouterContext } from '../Router';
-
-
-export const ProfileWrapper = styled.div`
-  display: grid;
-  grid-row-gap: 40px;
-  justify-items: center;
-  padding-top: 20px;
-`
+import Layout from 'src/components/common/Layout';
 
 const Profile = () => {
   const { profile: { posts, email, profileUrl } } = useContext(PrivateRouterContext);
   return (
-    <ProfileWrapper>
+    <Layout className='profile'>
       <UserDetails disabled={false} email={email} profileUrl={profileUrl} />
       <PostCollage posts={posts} />
-    </ProfileWrapper>
+    </Layout>
   );
 };
 

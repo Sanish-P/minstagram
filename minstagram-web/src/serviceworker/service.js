@@ -20,7 +20,7 @@ self.addEventListener('install', event => {
       await cache.addAll(PRECACHE_URLS); // adds index and main.js to cache
       return await self.skipWaiting();
     } catch (error) {
-      throw error
+      console.error(error)
     }
   })())
 });
@@ -34,7 +34,7 @@ self.addEventListener('activate', event => {
       const cachesToDelete = cacheNames.filter(cacheNames => !currentCaches.includes(cacheNames));
       await Promise.all(cachesToDelete.map((cacheToDelete) => caches.delete(cacheToDelete)))
     } catch (error) {
-      throw error;
+      console.error(error)
     }
   })())
 });

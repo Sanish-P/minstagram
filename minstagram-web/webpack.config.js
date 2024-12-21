@@ -20,7 +20,9 @@ module.exports = () => {
     devServer: {
       port: '9000',
       historyApiFallback: true,
-      host: '0.0.0.0' // host for auto open in browser
+      host: '0.0.0.0', // host for auto open in browser,
+      hot: false,
+      liveReload: true,
     },
     module: {
       rules: [

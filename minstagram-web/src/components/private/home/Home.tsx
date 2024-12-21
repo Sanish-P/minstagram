@@ -1,38 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
-import Post, { IPost } from './Post';
-import axiosInstance from 'src/utils/axios';
-
-const HomeWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`
+import Post, { IPost } from "./Post";
+import axiosInstance from "src/utils/axios";
+import Layout from "src/components/common/Layout";
 
 const Home: React.FC = () => {
   const [posts, setPosts] = useState<Array<IPost>>([]);
   const fetchPostList = async () => {
-    try {
-      const postList: Array<IPost> = await axiosInstance.get('/v1/posts')
-      .then(({ data }) => data)
-      .catch((error) => {
-        throw error;
-      })
-      setPosts(postList)
-    } catch (error) {
-      console.error(error);
-    }
-  }
+    const postList: Array<IPost> = await axiosInstance
+      .get("/v1/posts")
+      .then(({ data }) => data);
+
+    setPosts(postList);
+  };
   const handleReactionChange = () => {
     fetchPostList();
-  }
+  };
   useEffect(() => {
     fetchPostList();
-  }, [])
+  }, []);
   return (
-    <HomeWrapper className="home">
-      {posts.map((post) => <Post onReactionChange={handleReactionChange} key={post.id} post={post} />)}
-    </HomeWrapper>
+    <Layout className="home">
+      {posts.map((post) => (
+        <Post
+          onReactionChange={handleReactionChange}
+          key={post.id}
+          post={post}
+        />
+      ))}
+    </Layout>
   );
 };
 

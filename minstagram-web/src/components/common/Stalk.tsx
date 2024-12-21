@@ -13,20 +13,22 @@ interface IUser {
 const UserList = styled.ul`
   position: absolute;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
-  margin: 0;
-  padding: 0;
+  margin: 2px;
+  padding: 2px;
   background: white;
 `;
 const UserListItem = styled.li`
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  display: flex;
   cursor: pointer;
+  align-items: center;
+  padding: 2px;
 `;
 
 const UserProfileImage = styled.img`
-  margin: 16px;
-  max-width: 44px;
-  border-radius: 22px;
+  margin: 8px;
+  max-width: 32px;
+  max-height: 32px;
+  border-radius: 50%;
 `;
 
 const EmailWrapper = styled.span`
@@ -62,9 +64,7 @@ const Stalk: React.FC = () => {
         },
       })
       .then(({ data }) => data)
-      .catch((error) => {
-        throw error;
-      });
+
     setUserList(userList);
   };
 

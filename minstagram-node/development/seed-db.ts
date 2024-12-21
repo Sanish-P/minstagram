@@ -61,6 +61,7 @@ async function seedInitialData() {
         return User.create({
           email: userData.email,
           password: hashPassword(userData.password),
+          profile: resources[0].id,
         })
       }
       return user;

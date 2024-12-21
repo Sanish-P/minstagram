@@ -15,7 +15,7 @@ const FormWrapper = styled.div`
   grid-row-gap: 20px;
 `
 
-export const enum FormTypes {
+export enum FormTypes {
   login = 'login',
   signup = 'signup'
 }
